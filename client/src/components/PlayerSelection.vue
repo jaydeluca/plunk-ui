@@ -48,34 +48,21 @@
 
 
 <script>
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'PlayerSelection',
-  data: function() {
-    return {
-      teams: [
-        {
-          name: "Patriots",
-          players: [
-            { name: "Eric" },
-            { name: "Jay" },
-          ]
-        },
-        {
-          name: "Broncos",
-          players: [
-            { name: "Mike" },
-            { name: "Brad" },
-          ]
-        }
-      ],
-      teamOne: {},
-      teamTwo: {},
-      playerA: {},
-      playerB: {},
-      playerC: {},
-      playerD: {},
-    }
+  computed: mapState({
+    teams: state => state.teams,
+    teamOne: state => state.teamOne,
+    teamTwo: state => state.teamTwo,
+    playerA: state => state.playerA,
+    playerB: state => state.playerB,
+    playerC: state => state.playerC,
+    playerD: state => state.playerD,
+  }),
+  created () {
+    this.$store.dispatch('getAllTeams')
   }
 }
 </script>

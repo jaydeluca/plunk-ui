@@ -5,7 +5,7 @@ import teams from './modules/teams'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    modules: {
-        teams: teams,
-    }
+  modules: {
+    teams: teams,
+  }
 })

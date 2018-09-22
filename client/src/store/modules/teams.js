@@ -35,8 +35,11 @@ const actions = {
 }
 
 const mutations = {
-    setTeams (state, teams) {
+    setTeams(state, teams) {
         state.teams = teams
+    },
+    clearTeams(state) {
+        Object.assign(state, getDefaultState())
     }
 }
 

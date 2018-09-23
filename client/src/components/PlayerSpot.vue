@@ -1,7 +1,12 @@
 <template>
   <div class="spot">
-    Player<br>
-    {{ spotLabel }}
+    <template v-if="!player.name">
+      Player<br>
+      {{ spotLabel }}
+    </template>
+    <template v-else>
+      {{ player.name }}
+    </template>
   </div>
 
 </template>

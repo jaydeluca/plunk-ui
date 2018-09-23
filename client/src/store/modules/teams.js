@@ -40,6 +40,24 @@ const mutations = {
   },
   clearTeams(state) {
     Object.assign(state, getDefaultState())
+  },
+  setTeamOne(state, teamOne) {
+    state.teamOne = teamOne
+  },
+  setTeamTwo(state, teamTwo) {
+    state.teamTwo = teamTwo
+  },
+  setPlayerA(state, playerA) {
+    state.playerA = playerA
+  },
+  setPlayerB(state, playerB) {
+    state.playerB = playerB
+  },
+  setPlayerC(state, playerC) {
+    state.playerC = playerC
+  },
+  setPlayerD(state, playerD) {
+    state.playerD = playerD
   }
 }
 

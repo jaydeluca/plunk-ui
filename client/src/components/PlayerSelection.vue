@@ -32,13 +32,13 @@
       <div class="form-row" v-if="teamTwo.name">
         <span class="form-label">Player C</span>
         <select v-model="playerCPlaceholder" @change="setPlayerC">
-          <option v-for="player in teamOne.players" :key="player.name" :value="player">{{ player.name }}</option>
+          <option v-for="player in teamTwo.players" :key="player.name" :value="player">{{ player.name }}</option>
         </select>
       </div>
       <div class="form-row" v-if="teamTwo.name">
         <span class="form-label">Player D</span>
         <select v-model="playerDPlaceholder" @change="setPlayerD">
-          <option v-for="player in teamOne.players" :key="player.name" :value="player">{{ player.name }}</option>
+          <option v-for="player in teamTwo.players" :key="player.name" :value="player">{{ player.name }}</option>
         </select>
       </div>
     </div>
@@ -46,9 +46,8 @@
 
 </template>
 
-
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'PlayerSelection',

@@ -5,18 +5,21 @@
       <div class="form-row">
         <span class="form-label">Team 1</span>
         <select v-model="teamOnePlaceholder" @change="setTeamOne">
+          <option :value="teamUnselected">{{ teamUnselected.name }}</option>
           <option v-for="team in teams" :key="team.name" :value="team">{{ team.name }}</option>
         </select>
       </div>
       <div class="form-row" v-if="teamOne.name">
         <span class="form-label">Player A</span>
         <select v-model="playerAPlaceholder" @change="setPlayerA">
+          <option :value="playerUnselected">{{ playerUnselected.name }}</option>
           <option v-for="player in teamOne.players" :key="player.name" :value="player">{{ player.name }}</option>
         </select>
       </div>
       <div class="form-row" v-if="teamOne.name">
         <span class="form-label">Player B</span>
         <select v-model="playerBPlaceholder" @change="setPlayerB">
+          <option :value="playerUnselected">{{ playerUnselected.name }}</option>
           <option v-for="player in teamOne.players" :key="player.name" :value="player">{{ player.name }}</option>
         </select>
       </div>
@@ -26,18 +29,21 @@
       <div class="form-row">
         <span class="form-label">Team 2</span>
         <select v-model="teamTwoPlaceholder" @change="setTeamTwo">
+           <option :value="teamUnselected">{{ teamUnselected.name }}</option>
           <option v-for="team in teams" :key="team.name" :value="team">{{ team.name }}</option>
         </select>
       </div>
       <div class="form-row" v-if="teamTwo.name">
         <span class="form-label">Player C</span>
         <select v-model="playerCPlaceholder" @change="setPlayerC">
+          <option :value="playerUnselected">{{ playerUnselected.name }}</option>
           <option v-for="player in teamTwo.players" :key="player.name" :value="player">{{ player.name }}</option>
         </select>
       </div>
       <div class="form-row" v-if="teamTwo.name">
         <span class="form-label">Player D</span>
         <select v-model="playerDPlaceholder" @change="setPlayerD">
+          <option :value="playerUnselected">{{ playerUnselected.name }}</option>
           <option v-for="player in teamTwo.players" :key="player.name" :value="player">{{ player.name }}</option>
         </select>
       </div>
@@ -53,6 +59,8 @@ export default {
   name: 'PlayerSelection',
   data: function() {
     return {
+      teamUnselected: { name:"Select Team" },
+      playerUnselected: { name:"Select Player" },
       teamOnePlaceholder: {},
       teamTwoPlaceholder: {},
       playerAPlaceholder: {},
@@ -63,35 +71,43 @@ export default {
   },
   methods: {
     setTeamOne() {
-      this.$store.commit('teams/setTeamOne', this.teamOnePlaceholder)
+      let value = this.teamOnePlaceholder !== this.teamUnselected ? this.teamOnePlaceholder : {}
+      this.$store.commit('teams/setTeamOne', value)
     },
     setTeamTwo() {
-      this.$store.commit('teams/setTeamTwo', this.teamTwoPlaceholder)
+      let value = this.teamTwoPlaceholder !== this.teamUnselected ? this.teamTwoPlaceholder : {}
+      this.$store.commit('teams/setTeamTwo', value)
     },
     setPlayerA() {
-      this.$store.commit('teams/setPlayerA', this.playerAPlaceholder)
+      let value = this.playerAPlaceholder !== this.playerUnselected ? this.playerAPlaceholder : {}
+      this.$store.commit('teams/setPlayerA', value)
     },
     setPlayerB() {
-      this.$store.commit('teams/setPlayerB', this.playerBPlaceholder)
+      let value = this.playerBPlaceholder !== this.playerUnselected ? this.playerBPlaceholder : {}
+      this.$store.commit('teams/setPlayerB', value)
     },
     setPlayerC() {
-      this.$store.commit('teams/setPlayerC', this.playerCPlaceholder)
+      let value = this.playerCPlaceholder !== this.playerUnselected ? this.playerCPlaceholder : {}
+      this.$store.commit('teams/setPlayerC', value)
     },
     setPlayerD() {
-      this.$store.commit('teams/setPlayerD', this.playerDPlaceholder)
+      let value = this.playerDPlaceholder !== this.playerUnselected ? this.playerDPlaceholder : {}
+      this.$store.commit('teams/setPlayerD', value)
     },
   },
   computed: mapState({
     teams: state => state.teams.teams,
     teamOne: state => state.teams.teamOne,
     teamTwo: state => state.teams.teamTwo,
-    playerA: state => state.teams.playerA,
-    playerB: state => state.teams.playerB,
-    playerC: state => state.teams.playerC,
-    playerD: state => state.teams.playerD,
   }),
   created () {
     this.$store.dispatch('teams/getAllTeams')
+    this.teamOnePlaceholder = this.teamUnselected
+    this.teamTwoPlaceholder = this.teamUnselected
+    this.playerAPlaceholder = this.playerUnselected
+    this.playerBPlaceholder = this.playerUnselected
+    this.playerCPlaceholder = this.playerUnselected
+    this.playerDPlaceholder = this.playerUnselected
   }
 }
 </script>

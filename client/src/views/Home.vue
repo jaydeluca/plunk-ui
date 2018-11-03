@@ -1,7 +1,10 @@
 <template>
   <div class="home">
-    <img src="../assets/logo.png">
+    <h1>Plunk Game</h1>
     <div class="button-container">
+      <router-link to="/players">
+        <span class="button-home purple">Player Management</span>
+      </router-link>
       <router-link to="/newgame">
         <span class="button-home green">New Game</span>
       </router-link>

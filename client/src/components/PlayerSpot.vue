@@ -1,12 +1,16 @@
 <template>
-  <div class="spot">
-    <template v-if="!player.name">
+  <div class="player-spot">
+    <div v-if="!player.name">
       Player<br>
       {{ spotLabel }}
-    </template>
-    <template v-else>
+    </div>
+    <div v-else>
       {{ player.name }}
-    </template>
+      <div>
+        <button>Add Point</button>
+        <button>Add Plunk</button>
+      </div>
+    </div>
   </div>
 
 </template>
@@ -23,11 +27,7 @@ export default {
 
 <style lang="scss">
 
-.spot {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 1px solid black;
+.player-spot {
   display: flex;
   justify-content: center;
   align-items: center;

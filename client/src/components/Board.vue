@@ -30,6 +30,7 @@ export default {
     playerB: state => state.teams.playerB,
     playerC: state => state.teams.playerC,
     playerD: state => state.teams.playerD,
+    game: state => state.game
   }),
   components: {
     PlayerSpot

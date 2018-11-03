@@ -1,26 +1,16 @@
-/**
- * Replace with actual api calls when api is done
- */
-
-const _teams = [
-  {
-    name: "Patriots",
-    players: [
-      { name: "Eric" },
-      { name: "Jay" },
-    ]
-  },
-  {
-    name: "Broncos",
-    players: [
-      { name: "Mike" },
-      { name: "Brad" },
-    ]
-  }
-]
+import client from '@/client'
 
 export default {
   getTeams (cb) {
-    setTimeout(() => cb(_teams), 100)
+    const teams = client.get('/teams').then(res => {
+      return cb(res.data.content)
+    })
+  },
+  saveTeam (team, store) {
+    console.log(team)
+    client.post('/teams', team).then(res => {
+      store.dispatch('players/getAllPlayers')
+      store.dispatch('teams/getAllTeams')
+    })
   }
 }

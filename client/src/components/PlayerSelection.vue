@@ -48,6 +48,9 @@
         </select>
       </div>
     </div>
+
+    <button @click="setGameStage(1)">Save</button>
+
   </div>
 
 </template>
@@ -94,6 +97,9 @@ export default {
       let value = this.playerDPlaceholder !== this.playerUnselected ? this.playerDPlaceholder : {}
       this.$store.commit('teams/setPlayerD', value)
     },
+    setGameStage(stage) {
+      this.$store.commit('game/setGameStage', stage)
+    }
   },
   computed: mapState({
     teams: state => state.teams.teams,

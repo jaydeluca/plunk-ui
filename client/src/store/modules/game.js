@@ -24,6 +24,14 @@ const mutations = {
   setGameStage(state, stage) {
     state.stage = stage
   },
+  updateGameScore(state, points) {
+    console.log(points)
+    if (["A", "B"].includes(points.source)) {
+      state.teamOneScore += points.value
+    } else {
+      state.teamTwoScore += points.value
+    }
+  }
 }
 
 export default {

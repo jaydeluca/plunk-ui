@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import teams from './modules/teams'
 import game from './modules/game'
 import players from './modules/players'
+import './../../node_modules/bulma/css/bulma.css';
 
 Vue.use(Vuex)
 

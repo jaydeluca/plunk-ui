@@ -1,45 +1,118 @@
 <template>
-  <div class="newgame">
-      <router-link to="/newgame">
-        <span class="button-home green">New Game</span>
-      </router-link>
-    <div>
-      <h1>Player Management</h1>
-
-      <input type="text" v-model="newPlayer"><button @click="savePlayer">Save</button>
-
-      <p :key="player.id" v-for="player in players">
-        {{ player.name }}  <span v-if="player.available" class="available">Available</span>
-      </p>
-    </div>
-    <div>
-      <h1>Team Management</h1>
-
-      <input type="text" v-model="newTeam.name">
-      <select v-model="newTeam.playerOne">
-        <option value="">Select Player</option>
-        <option :key="player.id" v-for="player in availablePlayers" :value="player">
-          {{player.name}}
-        </option>
-      </select>
-      <select v-model="newTeam.playerTwo">
-        <option value="">Select Player</option>
-        <option :key="player.id" v-for="player in availablePlayers" :value="player">
-          {{player.name}}
-        </option>
-      </select>
-      <button @click="saveTeam">Save</button>
-
-      <div :key="team.id" v-for="team in teams" class="team-square">
-        <div><strong>{{ team.name }}</strong></div>
-        <div>
-          <p v-for="player in team.players" :key="player.id">
-            {{player.name}}
-          </p>
-        </div>
+  <div class="section">
+    <div class="container">
+      <div class="level" style="justify-content: space-around; padding-bottom: 20px; margin-bottom: 30px; border-bottom: 1px solid black;">
+        <router-link to="/">
+          <span class="button">Home</span>
+        </router-link>
+        <router-link to="/newgame">
+          <span class="button">New Game</span>
+        </router-link>
       </div>
     </div>
 
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <p class="title is-2">
+          Player/Team Management
+        </p>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-half">
+        <article class="message is-dark">
+          <div class="message-header">
+            <p>New Player</p>
+          </div>
+          <div class="message-body">
+            <div class="field">
+              <div class="control">
+                <input type="text" v-model="newPlayer" class="input" placeholder="Player Name">
+              </div>
+            </div>
+            <button @click="savePlayer" class="button">Save</button>
+          </div>
+        </article>
+      </div>
+      <div class="column is-half">
+        <article class="message is-dark">
+          <div class="message-header">
+            <p>Players</p>
+          </div>
+          <div class="message-body" style="text-align: left;">
+            <p :key="player.id" v-for="player in players">
+              {{ player.name }}  <span v-if="player.available" class="tag is-link">Available</span>
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-half">
+        <article class="message is-info">
+          <div class="message-header">
+            <p>New Team</p>
+          </div>
+          <div class="message-body">
+            <div class="field">
+              <div class="control">
+                <input type="text" v-model="newTeam.name" class="input" placeholder="Team Name">
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <div class="select is-primary">
+                  <select v-model="newTeam.playerOne">
+                    <option value="">Select Player</option>
+                    <option :key="player.id" v-for="player in availablePlayers" :value="player">
+                      {{player.name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <div class="select is-primary">
+                  <select v-model="newTeam.playerTwo">
+                    <option value="">Select Player</option>
+                    <option :key="player.id" v-for="player in availablePlayers" :value="player">
+                      {{player.name}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <button @click="saveTeam" class="button">Save</button>
+          </div>
+        </article>
+      </div>
+
+      <div class="column is-half">
+        <article class="message is-info">
+          <div class="message-header">
+            <p>Teams</p>
+          </div>
+          <div class="message-body">
+            <div :key="team.id" v-for="team in teams" class="card" style="margin-bottom: 10px;">
+              <div class="card-header">
+                <p class="card-header-title">{{ team.name }}</p>
+              </div>
+              <div class="card-body" style="padding: 10px;">
+                <div class="columns">
+                  <div class="column" v-for="player in team.players" :key="player.id">
+                    <p>{{player.name}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -72,7 +145,11 @@ export default {
     },
     saveTeam() {
       teamsService.saveTeam(this.newTeam, this.$store)
-      this.newTeam = ''
+      this.newTeam = {
+        name: '',
+        playerOne: '',
+        playerTwo: ''
+      }
     }
   },
   created () {
@@ -81,23 +158,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-
-.available {
-  background-color: rgba(black, .5);
-  color: white;
-  font-weight: bold;
-  padding: 3px;
-  font-size: 10px;
-}
-
-.team-square {
-  border: 1px solid black;
-  margin: 10px;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-</style>

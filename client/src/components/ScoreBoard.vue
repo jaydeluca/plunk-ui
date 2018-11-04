@@ -9,6 +9,8 @@
       <div>{{ game.teamTwoScore }}</div>
     </div>
 
+    <button>Submit</button>
+
   </div>
 </template>
 

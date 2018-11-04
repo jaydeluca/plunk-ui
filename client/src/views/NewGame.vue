@@ -1,16 +1,36 @@
 <template>
-  <div class="newgame">
-    <h1>New Game</h1>
-    <div class="game-container">
-      <div class="board-side boarder-right">
-         <board></board>
-      </div>
-      <div class="board-side">
-
-        <player-selection v-if="game.stage == 0"></player-selection>
-        <score-board v-if="game.stage == 1"></score-board>
+  <div class="section">
+    <div class="container">
+      <div class="level" style="justify-content: space-around; padding-bottom: 20px; margin-bottom: 30px; border-bottom: 1px solid black;">
+        <router-link to="/">
+          <span class="button">Home</span>
+        </router-link>
+        <router-link to="/players">
+          <span class="button">Player Management</span>
+        </router-link>
       </div>
     </div>
+
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <p class="title is-2">
+          New Game
+        </p>
+      </div>
+    </div>
+
+    <div class="container" style="margin-top: 30px;">
+      <div class="columns">
+        <div class="column is-half boarder-right">
+          <board></board>
+        </div>
+        <div class="column is-half">
+          <player-selection v-if="game.stage == 0"></player-selection>
+          <score-board v-if="game.stage == 1"></score-board>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -40,14 +60,8 @@ export default {
 </script>
 
 <style lang="scss">
-.game-container {
-  display: flex;
   // border: 1px solid black;
-  .board-side {
-    width: 50%;
-  }
   .boarder-right {
     border-right: 1px solid black;
   }
-}
 </style>

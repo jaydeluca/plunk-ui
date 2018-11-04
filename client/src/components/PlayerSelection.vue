@@ -1,55 +1,124 @@
 <template>
-  <div class="player-selection" v-if="teams.length > 0">
+  <div class="section" v-if="teams.length > 0">
 
-    <div class="team">
-      <div class="form-row">
-        <span class="form-label">Team 1</span>
-        <select v-model="teamOnePlaceholder" @change="setTeamOne">
-          <option :value="teamUnselected">{{ teamUnselected.name }}</option>
-          <option v-for="team in teams" :key="team.name" :value="team">{{ team.name }}</option>
-        </select>
-      </div>
-      <div class="form-row" v-if="teamOne.name">
-        <span class="form-label">Player A</span>
-        <select v-model="playerAPlaceholder" @change="setPlayerA">
-          <option :value="playerUnselected">{{ playerUnselected.name }}</option>
-          <option v-for="player in teamOne.players" :key="player.name" :value="player">{{ player.name }}</option>
-        </select>
-      </div>
-      <div class="form-row" v-if="teamOne.name">
-        <span class="form-label">Player B</span>
-        <select v-model="playerBPlaceholder" @change="setPlayerB">
-          <option :value="playerUnselected">{{ playerUnselected.name }}</option>
-          <option v-for="player in teamOne.players" :key="player.name" :value="player">{{ player.name }}</option>
-        </select>
+    <div class="columns">
+      <div class="column">
+        <article class="message is-dark">
+          <div class="message-header">
+            <p class="message-header-title">Team 1</p>
+          </div>
+          <div class="message-body">
+            <div class="field">
+              <div class="control">
+                <div class="select is-primary">
+                  <select v-model="teamOnePlaceholder" @change="setTeamOne">
+                    <option :value="teamUnselected">{{ teamUnselected.name }}</option>
+                    <option v-for="team in teams" :key="team.name" :value="team">{{ team.name }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns" v-if="teamOne.name">
+              <div class="column is-one-quarter">
+                <label class="form-label">Player A</label>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <div class="control">
+                    <div class="select is-primary">
+                      <select v-model="playerAPlaceholder" @change="setPlayerA">
+                        <option :value="playerUnselected">{{ playerUnselected.name }}</option>
+                        <option v-for="player in teamOne.players" :key="player.name" :value="player">{{ player.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns" v-if="teamOne.name">
+              <div class="column is-one-quarter">
+                <label class="form-label">Player B</label>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <div class="control">
+                    <div class="select is-primary">
+                      <select v-model="playerBPlaceholder" @change="setPlayerB">
+                        <option :value="playerUnselected">{{ playerUnselected.name }}</option>
+                        <option v-for="player in teamOne.players" :key="player.name" :value="player">{{ player.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
 
-    <div class="team">
-      <div class="form-row">
-        <span class="form-label">Team 2</span>
-        <select v-model="teamTwoPlaceholder" @change="setTeamTwo">
-           <option :value="teamUnselected">{{ teamUnselected.name }}</option>
-          <option v-for="team in teams" :key="team.name" :value="team">{{ team.name }}</option>
-        </select>
-      </div>
-      <div class="form-row" v-if="teamTwo.name">
-        <span class="form-label">Player C</span>
-        <select v-model="playerCPlaceholder" @change="setPlayerC">
-          <option :value="playerUnselected">{{ playerUnselected.name }}</option>
-          <option v-for="player in teamTwo.players" :key="player.name" :value="player">{{ player.name }}</option>
-        </select>
-      </div>
-      <div class="form-row" v-if="teamTwo.name">
-        <span class="form-label">Player D</span>
-        <select v-model="playerDPlaceholder" @change="setPlayerD">
-          <option :value="playerUnselected">{{ playerUnselected.name }}</option>
-          <option v-for="player in teamTwo.players" :key="player.name" :value="player">{{ player.name }}</option>
-        </select>
+    <div class="columns">
+      <div class="column">
+        <article class="message is-dark">
+          <div class="message-header">
+            <p class="message-header-title">Team 2</p>
+          </div>
+          <div class="message-body">
+            <div class="field">
+              <div class="control">
+                <div class="select is-primary">
+                  <select v-model="teamTwoPlaceholder" @change="setTeamTwo">
+                    <option :value="teamUnselected">{{ teamUnselected.name }}</option>
+                    <option v-for="team in teams" :key="team.name" :value="team">{{ team.name }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns" v-if="teamTwo.name">
+              <div class="column is-one-quarter">
+                <label class="form-label">Player C</label>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <div class="control">
+                    <div class="select is-primary">
+                      <select v-model="playerCPlaceholder" @change="setPlayerC">
+                        <option :value="playerUnselected">{{ playerUnselected.name }}</option>
+                        <option v-for="player in teamTwo.players" :key="player.name" :value="player">{{ player.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="columns" v-if="teamTwo.name">
+              <div class="column is-one-quarter">
+                <label class="form-label">Player D</label>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <div class="control">
+                    <div class="select is-primary">
+                      <select v-model="playerDPlaceholder" @change="setPlayerD">
+                        <option :value="playerUnselected">{{ playerUnselected.name }}</option>
+                        <option v-for="player in teamTwo.players" :key="player.name" :value="player">{{ player.name }}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </article>
       </div>
     </div>
 
-    <button @click="setGameStage(1)">Save</button>
+    <button @click="setGameStage(1)" class="button is-link">Start Game</button>
 
   </div>
 
@@ -121,9 +190,5 @@ export default {
 <style lang="scss">
 .form-label {
   margin-right: 10px;
-}
-
-.team {
-  margin: 30px 0;
 }
 </style>

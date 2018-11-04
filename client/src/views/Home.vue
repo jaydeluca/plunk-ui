@@ -1,16 +1,20 @@
 <template>
-  <div class="home">
-    <h1>Plunk Game</h1>
-    <div class="button-container">
-      <router-link to="/players">
-        <span class="button-home purple">Player Management</span>
-      </router-link>
-      <router-link to="/newgame">
-        <span class="button-home green">New Game</span>
-      </router-link>
-      <router-link to="/stats">
-        <span class="button-home purple">Stats</span></router-link>
-    </div>
+  <div class="section">
+      <div class="container">
+        <div class="level" style="justify-content: center;">
+          <p class="title is-2">Plunk Game</p>
+        </div>
+        <div class="button-container">
+          <router-link to="/players">
+            <span class="button is-primary">Player Management</span>
+          </router-link>
+          <router-link to="/newgame">
+            <span class="button is-info">New Game</span>
+          </router-link>
+          <router-link to="/stats">
+            <span class="button is-warning">Stats</span></router-link>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -23,10 +27,6 @@ export default {
 
 <style lang="scss">
 
-.home {
-  margin-top: 100px;
-}
-
 .button-container {
   width: 500px;
   margin-left: auto;
@@ -35,21 +35,9 @@ export default {
   justify-content: space-around;
 }
 
-.button-home {
-  padding: 10px 20px;
-  color: white;
-}
-
-.green {
-  background-color: green;
-}
-
-.purple {
-  background-color: purple;
-}
-
-a {
-  text-decoration: none;
+.flex-center {
+  display: flex;
+  justify-content: center;
 }
 
 </style>

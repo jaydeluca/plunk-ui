@@ -1,15 +1,33 @@
 <template>
-  <div class="scoreboard">
-    <div>
-      <div>{{ teamOne.name }}</div>
-      <div>{{ game.teamOneScore }}</div>
-    </div>
-    <div>
-      <div>{{ teamTwo.name }}</div>
-      <div>{{ game.teamTwoScore }}</div>
+  <div class="section">
+
+    <div class="columns">
+      <div class="column">
+        <p class="title is-3">
+          Scoreboard
+        </p>
+      </div>
     </div>
 
-    <button>Submit</button>
+    <article class="message is-dark">
+      <div class="message-header">
+        {{ teamOne.name }}
+      </div>
+      <div class="message-body">
+        {{ game.teamOneScore }}
+      </div>
+    </article>
+
+    <article class="message is-info">
+      <div class="message-header">
+        {{ teamTwo.name }}
+      </div>
+      <div class="message-body">
+        {{ game.teamTwoScore }}
+      </div>
+    </article>
+
+    <button class="button is-link">Submit</button>
 
   </div>
 </template>

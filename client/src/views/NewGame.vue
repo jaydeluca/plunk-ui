@@ -21,10 +21,10 @@
 
     <div class="container" style="margin-top: 30px;">
       <div class="columns">
-        <div class="column is-half boarder-right">
+        <div class="column is-two-thirds boarder-right">
           <board></board>
         </div>
-        <div class="column is-half">
+        <div class="column is-one-third">
           <player-selection v-if="game.stage == 0"></player-selection>
           <score-board v-if="game.stage == 1"></score-board>
         </div>

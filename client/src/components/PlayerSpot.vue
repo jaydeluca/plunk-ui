@@ -39,6 +39,7 @@ export default {
     addPoint(value) {
       let points = {
         source: this.spotLabel,
+        player: this.player,
         value: value
       }
       this.$store.commit('game/updateGameScore', points)

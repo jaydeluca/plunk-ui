@@ -15,10 +15,39 @@
     </div>
 
     <div class="columns">
-      <div class="column is-half is-offset-one-quarter">
+      <div class="column is-fullwidth">
         <p class="title is-2">
           Stats
         </p>
+        <table class="table is-fullwidth is-striped is-bordered">
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Team</th>
+              <th>Games Played</th>
+              <th>One Point</th>
+              <th>Plunks</th>
+              <th>Total Points</th>
+              <th>One Point / Game</th>
+              <th>Plunks / Game</th>
+              <th>Total Points / Game</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="stat in stats" :key="stat.player.id">
+              <td>{{ stat.player.name }}</td>
+              <td>{{ stat.team }}</td>
+              <td>{{ stat.gamesPlayed }}</td>
+              <td>{{ stat.points }}</td>
+              <td>{{ stat.plunks }}</td>
+              <td>{{ stat.totalPoints }}</td>
+              <td>{{ stat.onePointsPerGame }}</td>
+              <td>{{ stat.plunksPerGame }}</td>
+              <td>{{ stat.totalPointsPerGame }}</td>
+            </tr>
+          </tbody>
+        </table>
+
       </div>
     </div>
 
@@ -29,10 +58,10 @@
 
 <script>
 import { mapState } from 'vuex'
-import statsService from '@/services/stats'
+import client from '@/client'
 
 export default {
-  name: 'players',
+  name: 'stats',
   data: function() {
     return {
       stats: []
@@ -42,7 +71,9 @@ export default {
 
   },
   created () {
-    this.stats = statsService.getStats()
+    client.get('/stats').then(res => {
+      this.stats = res.data
+    })
   }
 }
 </script>

@@ -1,13 +1,11 @@
 const getDefaultState = () => {
   return {
-    teamOne: {},
-    teamTwo: {},
     playerA: {},
     playerB: {},
     playerC: {},
     playerD: {},
-    teamOneScore: 0,
-    teamTwoScore: 0,
+    teamOneScores: [],
+    teamTwoScores: [],
     stage: 0
   }
 }
@@ -25,12 +23,24 @@ const mutations = {
     state.stage = stage
   },
   updateGameScore(state, points) {
-    console.log(points)
-    if (["A", "B"].includes(points.source)) {
-      state.teamOneScore += points.value
-    } else {
-      state.teamTwoScore += points.value
+    let score = {
+      player: points.player,
+      value: points.value
     }
+    if (["A", "B"].includes(points.source)) {
+      state.teamOneScores.push(score)
+    } else {
+      state.teamTwoScores.push(score)
+    }
+  },
+  saveGame(state) {
+    state.teamOneScores = []
+    state.teamTwoScores = []
+    state.playerA = {}
+    state.playerB = {}
+    state.playerC = {}
+    state.playerD = {}
+    state.stage = 0
   }
 }
 

@@ -2,7 +2,7 @@
   <div class="section">
       <div class="container">
         <div class="level" style="justify-content: center;">
-          <p class="title is-2">Plunk Game</p>
+          <img src="logo.png" class="logo">
         </div>
         <div class="button-container">
           <router-link to="/players">
@@ -33,6 +33,11 @@ export default {
   margin-right: auto;
   display: flex;
   justify-content: space-around;
+}
+
+.logo {
+  width: 400px;
+  height: auto;
 }
 
 .flex-center {

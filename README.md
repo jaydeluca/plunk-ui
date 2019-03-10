@@ -1,4 +1,6 @@
-# client
+# Plunk Game (OZBDL) Client
+
+Vuejs SPA
 
 ## Project setup
 ```
